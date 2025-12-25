@@ -7,7 +7,7 @@ const Load = () => {
       <img
         src="https://i.ibb.co/WvjsSPMn/Ganga-seeds-logo.png"
         alt="Ganga Seeds Logo"
-        className="h-20 w-auto md:h-24 lg:h-28 mb-8"
+        className="h-20 w-auto md:h-24 lg:h-32 mb-8"
       />
 
       {/* Loading Dots */}
