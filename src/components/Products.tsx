@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Search, Plus, Minus, ShoppingCart, Leaf, Cherry, Sparkles } from 'lucide-react';
+import { Search, Plus, Minus, ShoppingCart, Leaf, Flower, Cherry, Sparkles } from 'lucide-react';
 import { products, categories, Product } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 import { Button } from '@/components/ui/button';
@@ -153,15 +153,20 @@ const Products = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute top-3 left-3">
-                    <span
-                      className={`px-3 py-1.5 rounded-full text-xs font-semibold shadow-sm backdrop-blur-sm ${
-                        product.category === 'vegetable'
-                          ? 'bg-primary/90 text-primary-foreground'
-                          : 'bg-secondary/90 text-secondary-foreground'
-                      }`}
-                    >
-                      {product.category === 'vegetable' ? '🥬 Vegetable' : '🍎 Fruit'}
-                    </span>
+                   <span
+  className={`px-3 py-1.5 rounded-full text-xs font-semibold shadow-sm backdrop-blur-sm ${
+    product.category === 'vegetable'
+      ? 'bg-primary/90 text-primary-foreground'
+      : product.category === 'fruit'
+      ? 'bg-secondary/90 text-secondary-foreground'
+      : 'bg-pink-500/90 text-white'
+  }`}
+>
+  {product.category === 'vegetable' && '🥬 Vegetable'}
+  {product.category === 'fruit' && '🍎 Fruit'}
+  {product.category === 'flower' && '🌸 Flower'}
+</span>
+
                   </div>
                   <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                     <div className="bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-bold text-primary">

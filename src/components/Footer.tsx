@@ -14,6 +14,7 @@ const Footer = () => {
   const seedCategories = [
     { name: 'Vegetable Seeds', href: '#products' },
     { name: 'Fruit Seeds', href: '#products' },
+    { name: 'Flower Seeds', href: '#products'},
     { name: 'All Seeds', href: '#products' },
   ];
 
@@ -33,23 +34,18 @@ const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=100063847458531"
                 className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
               >
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/ganga.seeds?igsh=ZGhraHRoc3ljcDd0"
                 className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
               >
                 <Instagram className="w-4 h-4" />
               </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
-              >
-                <Twitter className="w-4 h-4" />
-              </a>
+             
             </div>
           </div>
 
@@ -99,10 +95,16 @@ const Footer = () => {
                   <p className="text-sm">+91 93911 55666</p>
                 </div>
               </li>
+               <li className="flex items-start gap-3">
+                <Mail className="w-4 h-4 text-primary mt-0.5" />
+                <div>
+                  <p className="text-sm">gangaseeds32@gmail.com</p>
+                </div>
+              </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-primary mt-0.5" />
                 <div>
-                  <p className="text-sm text-background/70">India</p>
+                  <p className="text-sm text-background/70">Ganga Seeds, Amalapuram, AndhraPradesh - 533201, India</p>
                 </div>
               </li>
             </ul>

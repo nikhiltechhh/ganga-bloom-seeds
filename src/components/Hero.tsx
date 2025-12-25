@@ -79,7 +79,7 @@ const Hero = () => {
               {[
                 { value: '500+', label: 'Happy Farmers' },
                 { value: '95%', label: 'Germination Rate' },
-                { value: '18+', label: 'Seed Varieties' },
+                { value: '50+', label: 'Seed Varieties' },
               ].map((stat, index) => (
                 <div 
                   key={stat.label} 

@@ -49,13 +49,13 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Location',
-      value: 'India',
+      value: 'Ganga Seeds, Amalapuram, AndhraPradesh - 533201',
       link: '#',
     },
     {
       icon: Clock,
       title: 'Business Hours',
-      value: 'Mon - Sat: 9AM - 6PM',
+      value: 'Mon - Sun: 9AM - 8PM',
       link: '#',
     },
   ];
