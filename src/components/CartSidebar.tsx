@@ -37,23 +37,36 @@ const CartSidebar = () => {
       {/* Sidebar */}
       <div className="fixed top-0 right-0 h-full w-full max-w-md bg-background shadow-elevated z-50 animate-slide-in-right overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-border bg-gradient-to-r from-primary/5 to-secondary/5">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-              <ShoppingBag className="w-5 h-5 text-primary" />
-            </div>
-            <div>
-              <h2 className="font-display text-xl font-semibold">Your Cart</h2>
-              <p className="text-xs text-muted-foreground">{totalItems} item{totalItems !== 1 ? 's' : ''}</p>
-            </div>
-          </div>
-          <button
-            onClick={() => setIsCartOpen(false)}
-            className="p-2 rounded-full hover:bg-muted transition-all duration-200 hover:rotate-90"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
+        <div className="flex flex-col p-4 border-b border-border bg-gradient-to-r from-primary/5 to-secondary/5">
+  <div className="flex items-center justify-between">
+    <div className="flex items-center gap-3">
+      <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+        <ShoppingBag className="w-5 h-5 text-primary" />
+      </div>
+      <div>
+        <h2 className="font-display text-xl font-semibold">Your Cart</h2>
+        <p className="text-xs text-muted-foreground">
+          {totalItems} item{totalItems !== 1 ? "s" : ""}
+        </p>
+      </div>
+    </div>
+
+    <button
+      onClick={() => setIsCartOpen(false)}
+      className="p-2 rounded-full hover:bg-muted transition-all duration-200 hover:rotate-90"
+    >
+      <X className="w-5 h-5" />
+    </button>
+  </div>
+
+  {/* Delivery Information */}
+  <div className="mt-3 text-xs text-muted-foreground space-y-1">
+    <p>• Orders below 10 items: <span className="font-medium text-foreground">₹60 delivery charge</span></p>
+    <p>• Orders with 10 or more items: <span className="font-medium text-foreground">Free delivery</span></p>
+    <p>• Combo products: <span className="font-medium text-foreground">Free delivery</span></p>
+  </div>
+</div>
+
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto">

@@ -145,7 +145,7 @@ const Products = () => {
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-50 overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}

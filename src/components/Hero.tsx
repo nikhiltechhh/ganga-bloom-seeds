@@ -134,17 +134,15 @@ const Hero = () => {
               </div>
 
               {/* Rating Card */}
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-background rounded-xl shadow-card px-6 py-3 animate-float" style={{ animationDelay: '1s' }}>
-                <div className="flex items-center gap-2">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-secondary fill-secondary" />
-                    ))}
-                  </div>
-                  <span className="font-semibold">4.9</span>
-                  <span className="text-xs text-muted-foreground">(500+ reviews)</span>
-                </div>
-              </div>
+              <div className="absolute -bottom-2 bg-white left-1/2 -translate-x-1/2 animate-float" style={{ animationDelay: "1s" }}>
+  <img
+    src="https://i.ibb.co/WvjsSPMn/Ganga-seeds-logo.png"
+    alt="Brand logo"
+    className="h-16 w-auto"
+  />
+</div>
+
+            
             </div>
           </div>
         </div>

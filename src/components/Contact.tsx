@@ -49,7 +49,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Location',
-      value: 'Ganga Seeds, Amalapuram, AndhraPradesh - 533201',
+      value: 'Ganga Seeds, Vishakapatnam, AndhraPradesh - 533201',
       link: '#',
     },
     {
