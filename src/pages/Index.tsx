@@ -1,13 +1,37 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Helmet } from 'react-helmet-async';
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import Products from '@/components/Products';
+import About from '@/components/About';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <>
+      <Helmet>
+        <title>Ganga Seeds - Premium Vegetable & Fruit Seeds | ₹24 per Packet</title>
+        <meta
+          name="description"
+          content="Buy premium quality vegetable and fruit seeds from Ganga Seeds. High germination rate, trusted by farmers across India. All seeds at just ₹24 per packet."
+        />
+        <meta
+          name="keywords"
+          content="seeds, vegetable seeds, fruit seeds, farming, agriculture, Ganga Seeds, buy seeds online, India"
+        />
+      </Helmet>
+      
+      <div className="min-h-screen">
+        <Header />
+        <main>
+          <Hero />
+          <Products />
+          <About />
+          <Contact />
+        </main>
+        <Footer />
       </div>
-    </div>
+    </>
   );
 };
 

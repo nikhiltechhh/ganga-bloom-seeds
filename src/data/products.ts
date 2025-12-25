@@ -1,0 +1,182 @@
+export interface Product {
+  id: string;
+  name: string;
+  category: 'vegetable' | 'fruit';
+  description: string;
+  price: number;
+  image: string;
+  inStock: boolean;
+}
+
+export const products: Product[] = [
+  // Vegetables
+  {
+    id: 'tomato-seeds',
+    name: 'Tomato Seeds',
+    category: 'vegetable',
+    description: 'High-yield hybrid tomato seeds for juicy, red tomatoes',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1592841200221-a6898f307baa?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'chilli-seeds',
+    name: 'Green Chilli Seeds',
+    category: 'vegetable',
+    description: 'Spicy green chilli seeds for home and commercial farming',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1583119022894-919a68a3d0e3?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'brinjal-seeds',
+    name: 'Brinjal Seeds',
+    category: 'vegetable',
+    description: 'Premium quality brinjal/eggplant seeds',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1615484477778-ca3b77940c25?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'okra-seeds',
+    name: 'Okra (Bhindi) Seeds',
+    category: 'vegetable',
+    description: 'Fast-growing okra seeds with high yield',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1425543103986-22abb7d7e8d2?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'cucumber-seeds',
+    name: 'Cucumber Seeds',
+    category: 'vegetable',
+    description: 'Crispy cucumber seeds for salads and cooking',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'bitter-gourd-seeds',
+    name: 'Bitter Gourd Seeds',
+    category: 'vegetable',
+    description: 'Healthy bitter gourd seeds, rich in nutrients',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1587735243615-c03f25aaff15?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'bottle-gourd-seeds',
+    name: 'Bottle Gourd Seeds',
+    category: 'vegetable',
+    description: 'Premium lauki/bottle gourd seeds',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'spinach-seeds',
+    name: 'Spinach Seeds',
+    category: 'vegetable',
+    description: 'Nutritious palak/spinach seeds for leafy greens',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'carrot-seeds',
+    name: 'Carrot Seeds',
+    category: 'vegetable',
+    description: 'Sweet orange carrot seeds, rich in vitamins',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'radish-seeds',
+    name: 'Radish Seeds',
+    category: 'vegetable',
+    description: 'Fast-growing mooli/radish seeds',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1447175008436-054170c2e979?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'cabbage-seeds',
+    name: 'Cabbage Seeds',
+    category: 'vegetable',
+    description: 'Fresh cabbage seeds for compact heads',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'cauliflower-seeds',
+    name: 'Cauliflower Seeds',
+    category: 'vegetable',
+    description: 'White cauliflower seeds for nutritious harvest',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?w=400&q=80',
+    inStock: true,
+  },
+  // Fruits
+  {
+    id: 'watermelon-seeds',
+    name: 'Watermelon Seeds',
+    category: 'fruit',
+    description: 'Sweet and juicy watermelon seeds',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'muskmelon-seeds',
+    name: 'Muskmelon Seeds',
+    category: 'fruit',
+    description: 'Aromatic kharbuja/muskmelon seeds',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1571575173700-afb9492e6a50?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'papaya-seeds',
+    name: 'Papaya Seeds',
+    category: 'fruit',
+    description: 'Healthy papaya seeds, quick growing',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1517282009859-f000ec3b26fe?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'strawberry-seeds',
+    name: 'Strawberry Seeds',
+    category: 'fruit',
+    description: 'Sweet strawberry seeds for home gardens',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'lemon-seeds',
+    name: 'Lemon Seeds',
+    category: 'fruit',
+    description: 'Citrus lemon seeds for tangy fruits',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1590502593747-42a996133562?w=400&q=80',
+    inStock: true,
+  },
+  {
+    id: 'orange-seeds',
+    name: 'Orange Seeds',
+    category: 'fruit',
+    description: 'Sweet orange seeds, vitamin C rich',
+    price: 24,
+    image: 'https://images.unsplash.com/photo-1547514701-42782101795e?w=400&q=80',
+    inStock: true,
+  },
+];
+
+export const categories = [
+  { id: 'all', name: 'All Seeds' },
+  { id: 'vegetable', name: 'Vegetable Seeds' },
+  { id: 'fruit', name: 'Fruit Seeds' },
+];
