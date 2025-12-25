@@ -59,6 +59,11 @@ const Hero = () => {
               High germination rate, trusted by farmers across India. 
               Every packet just <span className="font-bold text-secondary text-2xl">₹24/-</span>
             </p>
+             <img
+    src="https://i.ibb.co/WvjsSPMn/Ganga-seeds-logo.png"
+    alt="Brand logo"
+    className="h-16 w-auto ml-28 mb-5"
+  />
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button size="lg" className="gap-2 text-base group" asChild>
@@ -79,7 +84,7 @@ const Hero = () => {
               {[
                 { value: '500+', label: 'Happy Farmers' },
                 { value: '95%', label: 'Germination Rate' },
-                { value: '50+', label: 'Seed Varieties' },
+                { value: '100+', label: 'Seed Varieties' },
               ].map((stat, index) => (
                 <div 
                   key={stat.label} 
@@ -102,7 +107,7 @@ const Hero = () => {
               {/* Main Image */}
               <div className="absolute inset-4 rounded-full overflow-hidden shadow-elevated">
                 <img
-                  src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&q=80"
+                  src="https://www.almanac.com/sites/default/files/styles/or/public/image_nodes/Germination.png?itok=b0aL2eGv"
                   alt="Fresh vegetables and seeds"
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                 />

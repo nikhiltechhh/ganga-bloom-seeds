@@ -104,7 +104,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-primary mt-0.5" />
                 <div>
-                  <p className="text-sm text-background/70">Ganga Seeds, Vishakapatnam, AndhraPradesh - 533201, India</p>
+                  <p className="text-sm text-background/70">Ganga Seeds, Vishakapatnam, AndhraPradesh, India</p>
                 </div>
               </li>
             </ul>
