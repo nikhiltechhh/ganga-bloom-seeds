@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { X, Plus, Minus, Trash2, ShoppingBag, Send } from 'lucide-react';
+import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
+import CheckoutModal from './CheckoutModal';
 
 const CartSidebar = () => {
   const {
@@ -13,16 +11,11 @@ const CartSidebar = () => {
     updateQuantity,
     clearCart,
     totalPrice,
+    totalItems,
     isCartOpen,
     setIsCartOpen,
   } = useCart();
-  const { toast } = useToast();
-  const [showCheckout, setShowCheckout] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    address: '',
-  });
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   const handleQuantityChange = (id: string, delta: number, currentQty: number) => {
     const newQty = currentQty + delta;
@@ -31,64 +24,32 @@ const CartSidebar = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!formData.name.trim() || !formData.phone.trim() || !formData.address.trim()) {
-      toast({
-        title: 'Please fill all fields',
-        description: 'Name, phone number and address are required.',
-        variant: 'destructive',
-      });
-      return;
-    }
-
-    // Format the WhatsApp message
-    const orderItems = items
-      .map(
-        (item) =>
-          `• ${item.name} x ${item.quantity} = ₹${item.price * item.quantity}`
-      )
-      .join('%0A');
-
-    const message = `🌱 *New Order from Ganga Seeds*%0A%0A*Customer Details:*%0AName: ${formData.name}%0APhone: ${formData.phone}%0AAddress: ${formData.address}%0A%0A*Order Items:*%0A${orderItems}%0A%0A*Total Amount: ₹${totalPrice}*%0A%0AThank you for ordering!`;
-
-    const whatsappUrl = `https://wa.me/919391155666?text=${message}`;
-    window.open(whatsappUrl, '_blank');
-
-    // Reset form and cart
-    setFormData({ name: '', phone: '', address: '' });
-    setShowCheckout(false);
-    clearCart();
-    setIsCartOpen(false);
-
-    toast({
-      title: 'Order Sent!',
-      description: 'Your order has been sent via WhatsApp.',
-    });
-  };
-
   if (!isCartOpen) return null;
 
   return (
     <>
       {/* Overlay */}
       <div
-        className="fixed inset-0 bg-foreground/20 backdrop-blur-sm z-50"
+        className="fixed inset-0 bg-foreground/30 backdrop-blur-sm z-50 animate-fade-in"
         onClick={() => setIsCartOpen(false)}
       />
 
       {/* Sidebar */}
       <div className="fixed top-0 right-0 h-full w-full max-w-md bg-background shadow-elevated z-50 animate-slide-in-right overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-border">
-          <div className="flex items-center gap-2">
-            <ShoppingBag className="w-5 h-5 text-primary" />
-            <h2 className="font-display text-xl font-semibold">Your Cart</h2>
+        <div className="flex items-center justify-between p-4 border-b border-border bg-gradient-to-r from-primary/5 to-secondary/5">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+              <ShoppingBag className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <h2 className="font-display text-xl font-semibold">Your Cart</h2>
+              <p className="text-xs text-muted-foreground">{totalItems} item{totalItems !== 1 ? 's' : ''}</p>
+            </div>
           </div>
           <button
             onClick={() => setIsCartOpen(false)}
-            className="p-2 rounded-full hover:bg-muted transition-colors"
+            className="p-2 rounded-full hover:bg-muted transition-all duration-200 hover:rotate-90"
           >
             <X className="w-5 h-5" />
           </button>
@@ -97,128 +58,71 @@ const CartSidebar = () => {
         {/* Content */}
         <div className="flex-1 overflow-y-auto">
           {items.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full p-8 text-center">
-              <ShoppingBag className="w-16 h-16 text-muted-foreground/30 mb-4" />
-              <p className="text-muted-foreground font-medium">Your cart is empty</p>
-              <p className="text-sm text-muted-foreground/70 mt-1">
+            <div className="flex flex-col items-center justify-center h-full p-8 text-center animate-fade-in">
+              <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mb-4 animate-bounce-soft">
+                <ShoppingBag className="w-12 h-12 text-muted-foreground/40" />
+              </div>
+              <p className="text-foreground font-medium text-lg">Your cart is empty</p>
+              <p className="text-sm text-muted-foreground mt-1">
                 Add some seeds to get started!
               </p>
+              <Button
+                variant="outline"
+                className="mt-6"
+                onClick={() => setIsCartOpen(false)}
+              >
+                Continue Shopping
+              </Button>
             </div>
-          ) : showCheckout ? (
-            /* Checkout Form */
-            <form onSubmit={handleSubmit} className="p-4 space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">Name *</label>
-                <Input
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  placeholder="Enter your name"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Phone Number *
-                </label>
-                <Input
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) =>
-                    setFormData({ ...formData, phone: e.target.value })
-                  }
-                  placeholder="Enter your phone number"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Delivery Address *
-                </label>
-                <Textarea
-                  value={formData.address}
-                  onChange={(e) =>
-                    setFormData({ ...formData, address: e.target.value })
-                  }
-                  placeholder="Enter your full address"
-                  rows={3}
-                  required
-                />
-              </div>
-
-              <div className="pt-4 border-t border-border">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="font-medium">Total</span>
-                  <span className="text-xl font-bold text-primary">
-                    ₹{totalPrice}
-                  </span>
-                </div>
-                <Button type="submit" className="w-full gap-2" size="lg">
-                  <Send className="w-4 h-4" />
-                  Send Order via WhatsApp
-                </Button>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  className="w-full mt-2"
-                  onClick={() => setShowCheckout(false)}
-                >
-                  Back to Cart
-                </Button>
-              </div>
-            </form>
           ) : (
-            /* Cart Items */
-            <div className="p-4 space-y-4">
-              {items.map((item) => (
+            <div className="p-4 space-y-3">
+              {items.map((item, index) => (
                 <div
                   key={item.id}
-                  className="flex gap-3 p-3 bg-muted/50 rounded-lg"
+                  className="flex gap-3 p-3 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-soft transition-all duration-300 animate-fade-in group"
+                  style={{ animationDelay: `${index * 0.05}s` }}
                 >
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-16 h-16 object-cover rounded-md"
-                  />
+                  <div className="relative overflow-hidden rounded-lg">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-20 h-20 object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="font-medium text-sm truncate">{item.name}</h4>
-                    <p className="text-xs text-muted-foreground capitalize">
-                      {item.category}
+                    <p className="text-xs text-muted-foreground capitalize mt-0.5">
+                      {item.category} seeds
                     </p>
-                    <p className="text-sm font-semibold text-primary mt-1">
-                      ₹{item.price} each
-                    </p>
-                  </div>
-                  <div className="flex flex-col items-end gap-2">
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="p-1 text-muted-foreground hover:text-destructive transition-colors"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                    <div className="flex items-center gap-2 bg-background rounded-full border border-border">
-                      <button
-                        onClick={() =>
-                          handleQuantityChange(item.id, -1, item.quantity)
-                        }
-                        className="p-1 hover:bg-muted rounded-full transition-colors"
-                      >
-                        <Minus className="w-3 h-3" />
-                      </button>
-                      <span className="w-6 text-center text-sm font-medium">
-                        {item.quantity}
-                      </span>
-                      <button
-                        onClick={() =>
-                          handleQuantityChange(item.id, 1, item.quantity)
-                        }
-                        className="p-1 hover:bg-muted rounded-full transition-colors"
-                      >
-                        <Plus className="w-3 h-3" />
-                      </button>
+                    <div className="flex items-center justify-between mt-2">
+                      <p className="text-sm font-bold text-primary">
+                        ₹{item.price * item.quantity}
+                      </p>
+                      <div className="flex items-center gap-1 bg-muted rounded-full p-0.5">
+                        <button
+                          onClick={() => handleQuantityChange(item.id, -1, item.quantity)}
+                          className="p-1.5 hover:bg-background rounded-full transition-colors"
+                        >
+                          <Minus className="w-3 h-3" />
+                        </button>
+                        <span className="w-7 text-center text-sm font-medium">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() => handleQuantityChange(item.id, 1, item.quantity)}
+                          className="p-1.5 hover:bg-background rounded-full transition-colors"
+                        >
+                          <Plus className="w-3 h-3" />
+                        </button>
+                      </div>
                     </div>
                   </div>
+                  <button
+                    onClick={() => removeFromCart(item.id)}
+                    className="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-full transition-all duration-200 self-start"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
                 </div>
               ))}
             </div>
@@ -226,29 +130,40 @@ const CartSidebar = () => {
         </div>
 
         {/* Footer */}
-        {items.length > 0 && !showCheckout && (
-          <div className="p-4 border-t border-border bg-background">
+        {items.length > 0 && (
+          <div className="p-4 border-t border-border bg-gradient-to-t from-muted/50 to-background">
             <div className="flex justify-between items-center mb-4">
-              <span className="font-medium">Total</span>
-              <span className="text-xl font-bold text-primary">₹{totalPrice}</span>
+              <div>
+                <span className="text-sm text-muted-foreground">Total Amount</span>
+                <p className="text-2xl font-bold text-primary">₹{totalPrice}</p>
+              </div>
+              <div className="text-right">
+                <span className="text-sm text-muted-foreground">{totalItems} items</span>
+                <p className="text-sm text-primary font-medium">Free Delivery</p>
+              </div>
             </div>
             <Button
-              onClick={() => setShowCheckout(true)}
-              className="w-full"
+              onClick={() => setIsCheckoutOpen(true)}
+              className="w-full gap-2 group"
               size="lg"
             >
               Proceed to Checkout
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               variant="ghost"
-              className="w-full mt-2 text-muted-foreground"
+              className="w-full mt-2 text-muted-foreground hover:text-destructive"
               onClick={clearCart}
             >
+              <Trash2 className="w-4 h-4 mr-2" />
               Clear Cart
             </Button>
           </div>
         )}
       </div>
+
+      {/* Checkout Modal */}
+      <CheckoutModal isOpen={isCheckoutOpen} onClose={() => setIsCheckoutOpen(false)} />
     </>
   );
 };
